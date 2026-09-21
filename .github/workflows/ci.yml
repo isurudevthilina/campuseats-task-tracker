@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "feature/**", "chore/**", "fix/**" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: List repository files
+        run: ls -la
+
+      - name: Basic project check
+        run: |
+          echo "Running CI for CampusEats Task Tracker"
+          test -f README.md && echo "README found"
+          test -f src/tasks.js && echo "task list found"
+
+      - name: Syntax check task list
+        run: node --check src/tasks.js && echo "src/tasks.js parsed successfully"
