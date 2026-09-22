@@ -11,6 +11,7 @@ const VIP_DISCOUNT = 0.1;
 
 function calculateTotal(price, quantity, customerType) {
   if (price < 0 || quantity < 0) {
+    
     throw new Error("Price and quantity must be >= 0");
   }
   const subtotal = price * quantity;
